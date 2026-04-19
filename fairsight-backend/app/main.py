@@ -51,10 +51,15 @@ app = FastAPI(
 )
 
 # CORS Middleware
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://fairsight-project.vercel.app"
+        "https://fairsight-project.vercel.app",
+        "https://fairsight-project-git-main-sai-deepak-s-projects-d10f6bad.vercel.app",
+        "https://fairsight-project-b4phf3sj8-sai-deepak-s-projects-d10f6bad.vercel.app",
+        "http://localhost:5173",   # for local testing (Vite)
+        "http://localhost:3000",   # optional
     ],
     allow_credentials=True,
     allow_methods=["*"],

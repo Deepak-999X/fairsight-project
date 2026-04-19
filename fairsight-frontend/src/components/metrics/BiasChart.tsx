@@ -126,7 +126,7 @@ export function BiasChart({ metrics, groupStats }: BiasChartProps) {
               tick={{ fontSize: 11, fill: "#6B7280" }}
               axisLine={false}
               tickLine={false}
-              tickFormatter={(v) => v.toFixed(2)}
+              tickFormatter={(v: number | string) => Number(v).toFixed(2)}
             />
             <Tooltip
               content={({ active, payload, label }) => {
@@ -136,7 +136,7 @@ export function BiasChart({ metrics, groupStats }: BiasChartProps) {
                     <div className="bg-white border border-gray-200 rounded-lg p-3 shadow-lg text-sm max-w-xs">
                       <p className="font-semibold text-gray-800">{d?.fullName}</p>
                       <p className="text-gray-600">
-                        Value: <span className="font-medium">{payload[0].value?.toFixed(4)}</span>
+                        Value: <span className="font-medium">{Number(payload[0].value).toFixed(4)}</span>
                       </p>
                       <p className="text-gray-500 text-xs">Threshold: {d?.threshold}</p>
                     </div>
@@ -196,7 +196,8 @@ export function BiasChart({ metrics, groupStats }: BiasChartProps) {
                 tick={{ fontSize: 11, fill: "#6B7280" }}
                 axisLine={false}
                 tickLine={false}
-                tickFormatter={(v) => `${(v * 100).toFixed(0)}%`}
+                //tickFormatter={(v) => `${(v * 100).toFixed(0)}%`}
+                tickFormatter={(v: number | string) => `${(Number(v) * 100).toFixed(0)}%`}
                 domain={[0, 1]}
               />
               <Tooltip content={<CustomTooltip />} />

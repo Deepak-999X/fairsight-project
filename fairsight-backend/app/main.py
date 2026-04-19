@@ -51,16 +51,15 @@ app = FastAPI(
 )
 
 # CORS Middleware
-# CORS Middleware
+# Regex covers main domain + all Vercel preview deployments automatically.
+# Local origins are listed explicitly for development.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://fairsight-project.vercel.app",
-        "https://fairsight-project-git-main-sai-deepak-s-projects-d10f6bad.vercel.app",
-        "https://fairsight-project-b4phf3sj8-sai-deepak-s-projects-d10f6bad.vercel.app",
-        "http://localhost:5173",   # for local testing (Vite)
-        "http://localhost:3000",   # optional
+        "http://localhost:5173",  # Vite dev server
+        "http://localhost:3000",  # optional local
     ],
+    allow_origin_regex=r"https://fairsight-project[a-zA-Z0-9\-]*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
